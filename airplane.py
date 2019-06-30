@@ -1,17 +1,17 @@
 import numpy as np
 import requests
 
-def sph2cart(r,theta,phi):
+def sph2cart(r,phi,theta):
 
     
 
     x = r*np.sin(theta/180.*np.pi)*np.cos(phi/180.*np.pi)
     y = r*np.sin(theta/180.*np.pi)*np.sin(phi/180.*np.pi)
     z = r*np.cos(theta/180.*np.pi)
-
+    
     return x,y,z
 
-def getDist(lon1,lat1,lon2,lat2,h1,h2):
+def getDist(lon1,lat1,h1,lon2,lat2,h2):
     
     r=6378137.  ###m
 
@@ -44,17 +44,17 @@ def nearest_plane(lon,lat,h):
     min = np.nanmin(dist)
     i = np.where(dist == min)
 
-
-    print("Flight: "+str(callsigns[i]))
-    print("From: "+str(countries[i]))
-    print("Current location: " + str(lats[i]) +" °N " + str(lons[i]) + " °W")
-    print("Altitude: " + str(heights[i]) + " m")
+    print("\n\n")
+    print("Flight: "+str(callsigns[filt][i]))
+    print("From: "+str(countries[filt][i]))
+    print("Current location: " + str(lats[filt][i]) +" °N " + str(lons[filt][i]) + " °W")
+    print("Altitude: " + str(heights[filt][i]) + " m")
     print("Distance: " + str(min) + "m")
-    
+    print("\n")
 
-nearest_plane(11.576006, 48.137079, 519)
-
-
+nearest_plane(11.209739,48.033622, 519)
+#11.209739,48.033622 seefeld
+#11.576006, 48.137079 marienplatz
 #url="https://opensky-network.org/api/states/all"
 
 #response = requests.get(url)
