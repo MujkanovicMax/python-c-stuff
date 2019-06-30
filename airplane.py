@@ -1,5 +1,6 @@
 import numpy as np
 import requests
+from getLoc import *
 
 def sph2cart(r,phi,theta):
 
@@ -52,12 +53,11 @@ def nearest_plane(lon,lat,h):
     print("Distance: " + str(min) + "m")
     print("\n")
 
-nearest_plane(11.209739,48.033622, 519)
+
+lon,lat,h = getLoc()
+nearest_plane(lon,lat,h)
 #11.209739,48.033622 seefeld
 #11.576006, 48.137079 marienplatz
-#url="https://opensky-network.org/api/states/all"
 
-#response = requests.get(url)
-#data = response.json()
 
 
