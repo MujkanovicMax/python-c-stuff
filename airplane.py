@@ -28,7 +28,7 @@ def getDist(lon1,lat1,h1,lon2,lat2,h2):
 def nearest_plane(lon,lat,h):
 
     url="https://opensky-network.org/api/states/all"
-
+    print("\nFetching aeroplane data")
     response = requests.get(url)
     data = response.json()
 
@@ -39,7 +39,7 @@ def nearest_plane(lon,lat,h):
     heights = np.array(data['states'])[:,7].astype(float)
     onground =np.array(data['states'])[:,8]
 
-    
+    print("Fetching nearest airplane")
     filt = np.where((onground==False)&(lons!=None)&(lats!=None))
     dist = getDist(lons[filt],lats[filt],heights[filt],lon,lat,h)
     min = np.nanmin(dist)
